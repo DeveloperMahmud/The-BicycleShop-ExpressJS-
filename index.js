@@ -6,12 +6,17 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get('/',(req,res) =>{
-   return res.render('bicycles');
+   return res.render('bicycles',{
+       bicycles:bicycles
+   });
 });
 app.get('/bicycle',(req,res) =>{
     console.log(req.query.id); 
     const bicycle = bicycles.find(b => b.id ===req.query.id);
-    return res.render('overview');
+    console.log(bicycle);
+    return res.render('overview',{
+        bicycle:bicycle
+    });
 });
 
 app.listen(3000, ()=> {
